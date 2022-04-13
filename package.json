@@ -1,0 +1,43 @@
+{
+  "name": "ML Stock Prediction PWA",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.19.5",
+    "@ant-design/icons": "^4.6.0",
+    "react": "^16.13.1",
+    "lodash": "^4.17.20",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "web-vitals": "2.1.4",
+    "react-grid-system": "8.1.3",
+    "@visx/visx": "2.9.0"
+  },
+  "scripts": {
+    "start": "$(npm bin)/react-scripts --openssl-legacy-provider start",
+    "start-api": "cd api && venv/bin/flask run --no-debugger",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000"
+}
