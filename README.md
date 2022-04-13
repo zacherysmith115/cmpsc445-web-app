@@ -4,7 +4,9 @@
 ### Application Function:
 #### the purpose of this app is to provide a fullstack application to be used to display the output predictions of a machine learning model to fulfill our final project requirements
 
-## Clone the repo but make sure to check your npm version as well as install any dependencies prior to npm start
+
+#### Getting Started:
+###### Clone the repo but make sure to check your npm version as well as install any dependencies prior to npm start
 
 
 # Getting Started with Create React App
