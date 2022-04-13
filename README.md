@@ -1,8 +1,8 @@
 # Progressive Web App
-### Built using React.js, visx, ant design UI components
+##### Built using React.js, visx, ant design UI components
 ## CMPSC445 Spring 2022 - Final Project
 ### Application Function:
-#### the purpose of this app is to provide a fullstack application to be used to display the output predictions of a machine learning model to fulfill our final project requirements
+###### the purpose of this app is to provide a fullstack application to be used to display the output predictions of a machine learning model to fulfill our final project requirements
 
 
 #### Getting Started:
