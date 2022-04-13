@@ -15,6 +15,8 @@ import '../index.css';
 import 'antd/dist/antd.css';
 import Graph from './Graph.js'
 
+const { Content } = Layout;
+
 export function Main() {
 
   return (
@@ -22,14 +24,14 @@ export function Main() {
     <ScreenClassProvider>
 
       <Layout style={{ padding: '24px' }} >
+
         <PageHeader 
           title="Title" 
           subTitle="This is a subtitle" />
-          <Layout style={{ padding: '0 24px 24px' }}>
-           
-              <Graph />
 
-          </Layout>
+          <Content>
+              <Graph />
+          </Content>
 
         </Layout>
 

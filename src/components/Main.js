@@ -16,14 +16,14 @@ import CompanyPanel from './LeftPanel.js'
 import 'antd/dist/antd.css';
 import '../index.css';
 
-const { Content, Footer, Sider } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 export function Main() {
 
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout>
 
-        <Sider>
+        <Sider >
           <CompanyPanel />
         </Sider>
 
@@ -39,6 +39,7 @@ export function Main() {
           </Footer>
 
         </Layout>
+
       </Layout>
     )
 }
