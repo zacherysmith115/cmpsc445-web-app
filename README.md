@@ -1,12 +1,12 @@
 # Progressive Web App
-## Built using React.js, visx, ant design UI components
+### Built using React.js, visx, ant design UI components
 ## CMPSC445 Spring 2022 - Final Project
 ### Application Function:
 #### the purpose of this app is to provide a fullstack application to be used to display the output predictions of a machine learning model to fulfill our final project requirements
 
 ## Clone the repo but make sure to check your npm version as well as install any dependencies prior to npm start
 
-------------------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
