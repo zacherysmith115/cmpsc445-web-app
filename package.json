@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start": "$(npm bin)/react-scripts --openssl-legacy-provider start",
+    "start-win": "node .\\node_modules\\react-scripts\\bin\\react-scripts.js --max_old_space_size=8128 start",
     "start-api": "cd api && venv/bin/flask run --no-debugger",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
