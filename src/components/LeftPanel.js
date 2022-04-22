@@ -55,13 +55,13 @@ export function CompanyPanel() {
       Company Name
       </Menu.Item>
       <SubMenu key="sub1" icon={<UserOutlined />} title="SAP">
-        <Menu.Item key="3">Some Comapany</Menu.Item>
-        <Menu.Item key="4">Some Comapany</Menu.Item>
-        <Menu.Item key="5">Some Comapany</Menu.Item>
+        <Menu.Item key="3">Some Company</Menu.Item>
+        <Menu.Item key="4">Some Company</Menu.Item>
+        <Menu.Item key="5">Some Company</Menu.Item>
       </SubMenu>
       <SubMenu key="sub2" icon={<TeamOutlined />} title="NASDAQ">
-        <Menu.Item key="6">Some Comapany</Menu.Item>
-        <Menu.Item key="8">Some Comapany</Menu.Item>
+        <Menu.Item key="6">Some Company</Menu.Item>
+        <Menu.Item key="8">Some Company</Menu.Item>
       </SubMenu>
      <Menu.Item key="9" icon={<FileOutlined />}>
       Files

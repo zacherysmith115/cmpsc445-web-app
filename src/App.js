@@ -12,31 +12,33 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Main from './components/Main.js'
 
-import SwaggerUI from "swagger-ui-react";
-import "swagger-ui-react/swagger-ui.css"
-
-
 // flask data passing
 function App() {
-  const [data, setData] = useState({
-    response: "",
-  });
 
-  useEffect(() => {
-    fetch('/data', { 'methods': 'GET', headers: { }
-  })
-    .then(res => res.json()).then(data => {
-      setData({
-        response: data.description,
-      })
-    });
-  }, []);
+  const [data,setData]=useState([]);
+
+   // Using useEffect for single rendering
+    useEffect(() => {
+        // Using fetch to fetch the api from 
+        // flask server it will be redirected to proxy
+        fetch("http://localhost:5000/data/available")
+        .then((res) => res.json()
+            .then((data) => {
+                // Setting a data from api
+                //console.log(data)
+                setData(data)
+                console.log(data)
+
+            })
+        );
+    }, [])
 
   return (
     <div className="App">
      <Main />
-     <SwaggerUI url="https://petstore.swagger.io/v2/swagger.json" /> 
-     <p>{data.response}</p>
+      
+      <p>{data.tickers}</p>
+    
     </div>
   );
 }
