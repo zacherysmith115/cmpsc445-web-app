@@ -15,30 +15,22 @@ import Main from './components/Main.js'
 // flask data passing
 function App() {
 
-  const [data,setData]=useState([]);
-
-   // Using useEffect for single rendering
+  const [reply,setReply]=useState([]);
+  
+    // Return string from root to see if API is alive.
     useEffect(() => {
-        // Using fetch to fetch the api from 
-        // flask server it will be redirected to proxy
-        fetch("http://localhost:5000/data/available")
+        fetch("http://localhost:5000/")
         .then((res) => res.json()
-            .then((data) => {
-                // Setting a data from api
-                //console.log(data)
-                setData(data)
-                console.log(data)
-
+            .then((reply) => {
+                setReply(reply)
+                console.log(reply)
             })
         );
     }, [])
 
   return (
     <div className="App">
-     <Main />
-      
-      <p>{data.tickers}</p>
-    
+     <Main /> 
     </div>
   );
 }

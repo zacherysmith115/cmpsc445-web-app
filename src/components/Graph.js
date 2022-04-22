@@ -8,7 +8,7 @@
   =========================================================
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Space, Card, Typography, Col, Row, Statistic, Empty } from 'antd';
 
 import '../index.css';
@@ -30,13 +30,12 @@ import {
     Tooltip,
 } from '@visx/xychart';
 
+// For Testing
+const selectedTicker = "AAPL";
+
+
 const { Title } = Typography;
 
-const recordedData = [
-    { x: '2020-01-01', y: 50 },
-    { x: '2020-01-02', y: 10 },
-    { x: '2020-01-03', y: 20 },
-];
 
 const learnedData = [
     { x: '2020-01-01', y: 30 },
@@ -79,6 +78,38 @@ const chartData = {
     }
 
 export function Graph() {
+
+  const [timeseries,setTimeseries]=useState([]);
+
+    // Collect Selected Data
+    useEffect(() => {
+        fetch("http://localhost:5000/data/" + selectedTicker)
+        .then((res) => res.json()
+            .then((timeseries) => {
+                setTimeseries(timeseries)
+                //console.log(timeseries)
+
+            })
+        );
+    }, [])
+
+  const datez = timeseries.historic_timeseries;
+  const valuez = timeseries.historic_timeseries;
+
+// NEED TO CREATE THIS recordedData object FROM the fetched json
+
+//    const recordedData = [
+//        { x: '2020-01-01', y: 50 },
+//        { x: '2020-01-02', y: 10 },
+//        { x: '2020-01-03', y: 20 },
+//    ];
+
+const recordedData = []
+
+
+//console.log(timeseries.historic_timeseries.values)
+console.log(recordedData);
+
 
     return(
 
