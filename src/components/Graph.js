@@ -32,10 +32,7 @@ import {
 
 // For Testing
 const selectedTicker = "AAPL";
-
-
 const { Title } = Typography;
-
 
 const learnedData = [
     { x: '2020-01-01', y: 30 },
