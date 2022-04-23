@@ -34,6 +34,12 @@ import {
 const selectedTicker = "AAPL";
 const { Title } = Typography;
 
+const recordedData = [
+    { x: '2020-01-01', y: 50 },
+    { x: '2020-01-02', y: 10 },
+    { x: '2020-01-03', y: 20 },
+];
+
 const learnedData = [
     { x: '2020-01-01', y: 30 },
     { x: '2020-01-02', y: 40 },
