@@ -8,7 +8,7 @@
   =========================================================
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Space, Card, Typography, Col, Row, Statistic, Empty } from 'antd';
 
 import '../index.css';
@@ -30,6 +30,8 @@ import {
     Tooltip,
 } from '@visx/xychart';
 
+// For Testing
+const selectedTicker = "AAPL";
 const { Title } = Typography;
 
 const recordedData = [
@@ -80,114 +82,155 @@ const chartData = {
 
 export function Graph() {
 
-	return(
+  const [timeseries,setTimeseries]=useState([]);
 
-	<Space direction="vertical" size="middle">
+    // Collect Selected Data
+    useEffect(() => {
+        fetch("http://localhost:5000/data/" + selectedTicker)
+        .then((res) => res.json()
+            .then((timeseries) => {
+                setTimeseries(timeseries)
+                //console.log(timeseries)
+
+            })
+        );
+    }, [])
+
+  const datez = timeseries.historic_timeseries;
+  const valuez = timeseries.historic_timeseries;
+
+// NEED TO CREATE THIS recordedData object FROM the fetched json
+
+//    const recordedData = [
+//        { x: '2020-01-01', y: 50 },
+//        { x: '2020-01-02', y: 10 },
+//        { x: '2020-01-03', y: 20 },
+//    ];
+
+const recordedData = []
+
+
+//console.log(timeseries.historic_timeseries.values)
+console.log(recordedData);
+
+
+    return(
+
+    <Space direction="vertical" size="middle">
 
     <Space direction="horizontal" size="large">
-    	<div className="cardbox">
+        <div className="cardbox">
                 <Card bordered={false}>
                     <Statistic 
-                    	title="Bitcoin" 
-                    	value={11.28}
-                    	precision={2}
-                    	prefix={<StockOutlined />}
-                    	suffix="%" />
+                        title="Bitcoin" 
+                        value={11.28}
+                        precision={2}
+                        prefix={<StockOutlined />}
+                        suffix="%" />
                 </Card>
         
-    	</div>
+        </div>
 
-    	<div className="cardbox">
-    	
+        <div className="cardbox">
+        
                 <Card bordered={false}>
                     <Statistic 
-                    	title="Microsoft" 
-                    	value={11.28}
-                    	precision={2}
-                    	prefix={<RiseOutlined />}
-                    	suffix="%" />
+                        title="Microsoft" 
+                        value={11.28}
+                        precision={2}
+                        prefix={<RiseOutlined />}
+                        suffix="%" />
                 </Card>
          
-    	</div>
+        </div>
 
-    	<div className="cardbox">
-    	
+        <div className="cardbox">
+        
                 <Card bordered={false}>
                     <Statistic 
-                    	title="Apple" 
-                    	value={11.28}
-                    	precision={2}
-                    	prefix={<BoxPlotTwoTone twoToneColor="#F63E4F" />}
-                    	suffix="%" />
+                        title="Apple" 
+                        value={11.28}
+                        precision={2}
+                        prefix={<BoxPlotTwoTone twoToneColor="#F63E4F" />}
+                        suffix="%" />
                 </Card>
      
-    	</div>
+        </div>
 
-    	   	<div className="cardbox">
-    		
+            <div className="cardbox">
+            
                 <Card bordered={false}>
                     <Statistic 
-                    	title="Gold" 
-                    	value={9.3}
-                    	precision={2}
-                    	prefix={<GoldTwoTone twoToneColor="#F63E4F" />}
-                    	suffix="%" />
+                        title="Gold" 
+                        value={9.3}
+                        precision={2}
+                        prefix={<GoldTwoTone twoToneColor="#F63E4F" />}
+                        suffix="%" />
                 </Card>
            
-    	</div>
+        </div>
     </Space>
 
-    <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
-        <AnimatedAxis orientation="left" />
-        <AnimatedAxis orientation="bottom" />
-        <AnimatedGrid columns={false} numTicks={4} />
-        <AnimatedLineSeries dataKey="Recorded Data" data={recordedData} {...accessors} />
-        <AnimatedLineSeries dataKey="Learned Data" data={learnedData} {...accessors} />
-        <Tooltip
-            snapTooltipToDatumX
-            snapTooltipToDatumY
-            showVerticalCrosshair
-            showSeriesGlyphs
-            renderTooltip={({ tooltipData, colorScale }) => (
-                <div>
-                    <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
-                        {tooltipData.nearestDatum.key}
+     <div className="cardbox">
+        <Card size="medium" bordered={false}>
+            <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
+                <AnimatedAxis orientation="left" />
+                <AnimatedAxis orientation="bottom" />
+                <AnimatedGrid columns={false} numTicks={4} />
+                <AnimatedLineSeries dataKey="Recorded Data" data={recordedData} {...accessors} />
+                <AnimatedLineSeries dataKey="Learned Data" data={learnedData} {...accessors} />
+                <Tooltip
+                    snapTooltipToDatumX
+                    snapTooltipToDatumY
+                    showVerticalCrosshair
+                    showSeriesGlyphs
+                    renderTooltip={({ tooltipData, colorScale }) => (
+                        <div>
+                            <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
+                                {tooltipData.nearestDatum.key}
+                            </div>
+                            {accessors.xAccessor(tooltipData.nearestDatum.datum)}
+                            {', '}
+                            {accessors.yAccessor(tooltipData.nearestDatum.datum)}
+                        </div>
+                )}
+            />
+    </XYChart>
+
+        </Card>
+    </div>
+
+      <div className="cardbox">
+        <Card size="medium" bordered={false}>
+         <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
+            <AnimatedAxis orientation="left" />
+            <AnimatedAxis orientation="bottom" />
+            <AnimatedGrid columns={false} numTicks={4} />
+            <AnimatedLineSeries dataKey="Recorded Data" data={recordedData} {...accessors} />
+            <AnimatedLineSeries dataKey="Learned Data" data={learnedData} {...accessors} />
+            <Tooltip
+                snapTooltipToDatumX
+                snapTooltipToDatumY
+                showVerticalCrosshair
+                showSeriesGlyphs
+                renderTooltip={({ tooltipData, colorScale }) => (
+                    <div>
+                        <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
+                            {tooltipData.nearestDatum.key}
+                        </div>
+                        {accessors.xAccessor(tooltipData.nearestDatum.datum)}
+                        {', '}
+                        {accessors.yAccessor(tooltipData.nearestDatum.datum)}
                     </div>
-                    {accessors.xAccessor(tooltipData.nearestDatum.datum)}
-                    {', '}
-                    {accessors.yAccessor(tooltipData.nearestDatum.datum)}
-                </div>
             )}
         />
     </XYChart>
-
-    <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
-        <AnimatedAxis orientation="left" />
-        <AnimatedAxis orientation="bottom" />
-        <AnimatedGrid columns={false} numTicks={4} />
-        <AnimatedLineSeries dataKey="Recorded Data" data={recordedData} {...accessors} />
-        <AnimatedLineSeries dataKey="Learned Data" data={learnedData} {...accessors} />
-        <Tooltip
-            snapTooltipToDatumX
-            snapTooltipToDatumY
-            showVerticalCrosshair
-            showSeriesGlyphs
-            renderTooltip={({ tooltipData, colorScale }) => (
-                <div>
-                    <div style={{ color: colorScale(tooltipData.nearestDatum.key) }}>
-                        {tooltipData.nearestDatum.key}
-                    </div>
-                    {accessors.xAccessor(tooltipData.nearestDatum.datum)}
-                    {', '}
-                    {accessors.yAccessor(tooltipData.nearestDatum.datum)}
-                </div>
-            )}
-        />
-    </XYChart>
+</Card>
+</div>
 
     </Space>
 
-		)
+        )
 }
 
 

@@ -24,6 +24,7 @@ export function Main() {
       <Layout>
 
         <Sider >
+           {/* company panel is left panel */}
           <CompanyPanel />
         </Sider>
 

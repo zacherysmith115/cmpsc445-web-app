@@ -7,25 +7,30 @@
   * Coded by Mio Diaz
   =========================================================
  */
+
 import React, { useState, useEffect } from 'react';
-
 import './App.css';
-
 import Main from './components/Main.js'
 
 // flask data passing
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
 
-  // useEffect(() => {
-  //   fetch('/api/time').then(res => res.json()).then(data => {
-  //     setCurrentTime(data.time);
-  //   });
-  // }, []);
+  const [reply,setReply]=useState([]);
+  
+    // Return string from root to see if API is alive.
+    useEffect(() => {
+        fetch("http://localhost:5000/")
+        .then((res) => res.json()
+            .then((reply) => {
+                setReply(reply)
+                console.log(reply)
+            })
+        );
+    }, [])
 
   return (
     <div className="App">
-     <Main />
+     <Main /> 
     </div>
   );
 }

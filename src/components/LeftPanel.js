@@ -8,7 +8,7 @@
   =========================================================
  */
 import { Menu, Space, Divider } from 'antd';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import 'antd/dist/antd.css';
 import '../index.css'
@@ -24,10 +24,33 @@ import {
   ControlOutlined,
 } from '@ant-design/icons';
 
+const listcount = 0;
 const { SubMenu } = Menu;
 
+let menuKey = 0;
+
+function clickHandler() {
+  return ++menuKey;
+}
+
 export function CompanyPanel() {
-	
+
+  const [data,setTickers]=useState([]);
+
+	   // Collect Available Tickers
+    useEffect(() => {
+        fetch("http://localhost:5000/data/available")
+        .then((res) => res.json()
+            .then((data) => {
+                setTickers(data)
+                console.log(data)
+
+            })
+        );
+    }, [])
+
+    const ticky = data.tickers;
+
 	return (
 		<Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
@@ -49,28 +72,19 @@ export function CompanyPanel() {
           </Space>  
       </div>
 
-       <Divider></Divider>
-
-      <Menu.Item key="1" icon={<PieChartOutlined />}>
-      Company Name
-      </Menu.Item>
-      <SubMenu key="sub1" icon={<UserOutlined />} title="SAP">
-        <Menu.Item key="3">Some Comapany</Menu.Item>
-        <Menu.Item key="4">Some Comapany</Menu.Item>
-        <Menu.Item key="5">Some Comapany</Menu.Item>
+       <SubMenu key="sub1" icon={<PieChartOutlined />} title="Select a Company">
+       <div className="scroll">
+        {
+        // Create as many menu items as tickers in the list
+          ticky?.map((menuitem) => (
+            <Menu.Item key={clickHandler()} icon={<PieChartOutlined />}>
+            {menuitem}
+            </Menu.Item>     
+            ))}  
+        </div>
       </SubMenu>
-      <SubMenu key="sub2" icon={<TeamOutlined />} title="NASDAQ">
-        <Menu.Item key="6">Some Comapany</Menu.Item>
-        <Menu.Item key="8">Some Comapany</Menu.Item>
-      </SubMenu>
-     <Menu.Item key="9" icon={<FileOutlined />}>
-      Files
-     </Menu.Item>
-
     </Menu>
-         
-		)
+    )
 }
-
 
 export default CompanyPanel
